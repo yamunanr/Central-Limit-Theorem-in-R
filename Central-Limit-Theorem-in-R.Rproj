@@ -1,13 +1,32 @@
-Version: 1.0
+#Central Limit Theorm
 
-RestoreWorkspace: Default
-SaveWorkspace: Default
-AlwaysSaveHistory: Default
+# generate 10000 numbers (uniform Distribution)
 
-EnableCodeIndexing: Yes
-UseSpacesForTab: Yes
-NumSpacesForTab: 2
-Encoding: UTF-8
+r <- runif(10000)
+hist(r)
+meanr <- mean(r)
+sdr <- sd(r)
 
-RnwWeave: Sweave
-LaTeX: pdfLaTeX
+# Draw three random samples from rand calculate mean 
+
+sample(r, 4)
+mean(sample(r,4))
+
+cl4 <- mean(sample(r,4))
+
+for (i in 1:1000)
+{
+  cl4 <- c(cl4, mean(sample(r, 4)))
+}
+
+hist(cl4)
+meancl4 <- mean(cl4)
+sdcl4 <- sd(cl4)
+
+par(mrow = c(2,2))
+
+hist(r, main = "sample 1")
+mtext(sdr, side = 3)
+mtext(meanr, side=4)
+
+hist(cl4, main = "Sample 4")
